@@ -13,6 +13,7 @@ class FeatureCombiner(object):
         featurelist = []
         for extractor in self.__extractors__:
             feature = extractor.extract(image)
+            assert feature is not None, "Feature obtained from {} was none".format(extractor.__class__.__name__)
             featurelist.append(feature)
         featurevector = np.concatenate(tuple(featurelist))
         return featurevector
